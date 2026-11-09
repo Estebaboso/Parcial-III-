@@ -7,12 +7,17 @@ import co.uniquindio.poo.comportamiento.memento.CaretakerPedido;
 import co.uniquindio.poo.estructural.decorator.PedidoBase;
 
 public class PedidoFacade {
+
     private MediatorControl mediator;
     private CommandHistorial historial;
     private CaretakerPedido caretaker;
     private HandlerValidador validador;
 
-    public PedidoFacade(MediatorControl mediator, CommandHistorial historial, CaretakerPedido caretaker, HandlerValidador validador) {
+    public PedidoFacade(MediatorControl mediator,
+                        CommandHistorial historial,
+                        CaretakerPedido caretaker,
+                        HandlerValidador validador) {
+
         this.mediator = mediator;
         this.historial = historial;
         this.caretaker = caretaker;
@@ -53,6 +58,21 @@ public class PedidoFacade {
 
     public void crearPedido(PedidoBase pedido, String usuario) {
 
+        if (validador == null) {
+            System.out.println("No existe una cadena de validación.");
+            return;
+        }
+
+        boolean valido = validador.handle(pedido);
+
+        if (!valido) {
+            System.out.println("El pedido no pasó las validaciones.");
+            return;
+        }
+
+        System.out.println("El pedido pasó todas las validaciones.");
+
+        // Aquí continuará el proceso de creación del pedido.
     }
 
     public void pagarPedido(PedidoBase pedido) {
@@ -67,3 +87,4 @@ public class PedidoFacade {
 
     }
 }
+
