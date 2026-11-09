@@ -4,6 +4,8 @@ import co.uniquindio.poo.comportamiento.memento.MementoPedido;
 import co.uniquindio.poo.comportamiento.observer.EventPedido;
 import co.uniquindio.poo.comportamiento.observer.ObserverPedido;
 import co.uniquindio.poo.comportamiento.observer.SubjectPedido;
+import co.uniquindio.poo.comportamiento.state.StateCancelado;
+import co.uniquindio.poo.comportamiento.state.StateCreado;
 import co.uniquindio.poo.comportamiento.state.StatePedido;
 import co.uniquindio.poo.estructural.composite.Producto;
 import co.uniquindio.poo.model.Cliente;
@@ -26,14 +28,17 @@ public class PedidoBase implements Pedido, SubjectPedido {
     private StatePedido state;
     private List<ObserverPedido> observers;
 
-    public PedidoBase(String id, Tienda tienda, Cliente cliente, double distanciaKm) {
+    public PedidoBase(String id, Tienda tienda, Cliente cliente, double costoEnvio,double distanciaKm, StatePedido state){
         this.id = id;
         this.tienda = tienda;
         this.cliente = cliente;
+        this.costoEnvio = costoEnvio;
         this.distanciaKm = distanciaKm;
+        this.state = new StateCreado();  //Aqui se crea el estado default, queda en cancelado siempre
         this.productos = new ArrayList<>();
         this.observers = new ArrayList<>();
         this.fechaCreacion = LocalDateTime.now();
+
 
     }
 
@@ -41,7 +46,7 @@ public class PedidoBase implements Pedido, SubjectPedido {
     @Override
     public double getCosto() {
 
-        return 0;
+        return costoEnvio;
     }
 
     @Override
@@ -68,11 +73,40 @@ public class PedidoBase implements Pedido, SubjectPedido {
 
     // ---------- State ----------
 
-    //Cambiar para que notifique a los observers
+
+ // Se modifica cada uno de los estados, el set esta más abajo
+
+    public void pagar() {
+        state.pagar(this);
+    }
+
+    public void aceptar() {
+        state.aceptar(this);
+    }
+
+    public void marcarListo() {
+        state.marcarListo(this);
+    }
+
+    public void despachar() {
+        state.despachar(this);
+    }
+
+    public void entregar() {
+        state.entregar(this);
+    }
+
+    public void cancelar() {
+        state.cancelar(this);
+    }
+
+    public void reembolsar() {
+        state.reembolsar(this);
+    }
 
     // ---------- Memento ----------
     public MementoPedido createMemento() {
-        /
+
         return null;
     }
 
