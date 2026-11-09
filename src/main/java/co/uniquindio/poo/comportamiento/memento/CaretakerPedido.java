@@ -3,7 +3,8 @@ package co.uniquindio.poo.comportamiento.memento;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaretakerPedido {
+public class
+CaretakerPedido {
     private List<MementoPedido> mementos;
 
     public CaretakerPedido() {
