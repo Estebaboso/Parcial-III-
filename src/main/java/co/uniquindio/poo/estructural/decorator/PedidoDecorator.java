@@ -1,14 +1,30 @@
 package co.uniquindio.poo.estructural.decorator;
 
 public abstract class PedidoDecorator implements Pedido {
-    private Pedido pedido;
+    protected Pedido pedidoBasico;
 
-    public PedidoDecorator(Pedido pedido) {
-        this.pedido = pedido;
+    public PedidoDecorator(Pedido pedidoBasico) {
+        this.pedidoBasico = pedidoBasico;
     }
 
-    public Pedido getPedido() { return pedido; }
-    public void setPedido(Pedido pedido) { this.pedido = pedido; }
+
+    @Override
+    public double getCosto() {
+        return pedidoBasico.getCosto();
+    }
+
+    @Override
+    public String getDescripcion() {
+        return pedidoBasico.getDescripcion();
+    }
+
+    public Pedido getPedido() {
+        return pedidoBasico;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedidoBasico = pedido;
+    }
 
 
 }
