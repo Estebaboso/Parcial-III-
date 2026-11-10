@@ -17,7 +17,7 @@ public class HandlerProductos extends HandlerValidador {
     //si se pregunta porque hay 2 validar hacen cosas distintas, el validar Producto comprueba cada producto individual
 
     private boolean validarProducto(Producto producto){
-        if(producto == null || producto.getPrecio() <= 0) {
+        if(producto == null || producto.obtenerPrecio() <= 0) {
             return false;
         }if(producto instanceof ProductoIndividual){
             return true;
