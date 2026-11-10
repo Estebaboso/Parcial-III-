@@ -20,7 +20,6 @@ public class StateListoParaRecoger implements StatePedido {
     @Override
     public void marcarListo(PedidoBase pedido) {
         System.out.println("El pedido esta listo para recoger");
-        pedido.marcarListo();
 
     }
 

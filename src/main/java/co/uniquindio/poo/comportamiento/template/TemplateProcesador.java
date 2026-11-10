@@ -4,22 +4,34 @@ import co.uniquindio.poo.estructural.decorator.PedidoBase;
 
 public abstract class TemplateProcesador {
     public final void procesar(PedidoBase pedido) {
-        // TODO: validar -> cobrar -> preparar -> entregar -> cerrar
+        validar(pedido);
+        cobrar(pedido);
+        preparar(pedido);
+        entregar(pedido);
+        cerrar(pedido);
     }
-
+    //etto comprueba q exista el pedido y tengan productos
     protected void validar(PedidoBase pedido) {
-        // TODO: paso común
+        if(pedido == null){
+            throw new IllegalArgumentException("El pedido no puede ser nulo.");
+        }
+
+        if(pedido.getProductos().isEmpty()){
+            throw new IllegalArgumentException("EL pedido no tiene productos.");
+        }
     }
 
+    //se utiliza el metodo que ya tiene pedido
     protected void cobrar(PedidoBase pedido) {
-        // TODO: paso común
+        pedido.pagar();
     }
 
     protected abstract void preparar(PedidoBase pedido);
 
     protected abstract void entregar(PedidoBase pedido);
 
+    //esto simplemente muestra que el proceso termino xd
     protected void cerrar(PedidoBase pedido) {
-        // TODO: hook opcional
+        System.out.println("Proceso del pedido" +pedido.getId() +" finalizado.");
     }
 }

@@ -32,7 +32,6 @@ public class StateEntregado implements StatePedido {
     @Override
     public void entregar(PedidoBase pedido) {
         System.out.println("El pedido se ha entregado");
-        pedido.entregar();
 
     }
 

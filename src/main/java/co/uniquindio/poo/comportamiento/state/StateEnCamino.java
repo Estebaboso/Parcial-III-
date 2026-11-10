@@ -27,14 +27,13 @@ public class StateEnCamino implements StatePedido {
     @Override
     public void despachar(PedidoBase pedido) {
         System.out.println("El pedido ha sido despachado y se encuentra en camino");
-        pedido.despachar();
 
     }
 
     @Override
     public void entregar(PedidoBase pedido) {
         System.out.println("El pedido se encuentra en camino");
-
+        pedido.setState(new StateEntregado());
     }
 
     @Override

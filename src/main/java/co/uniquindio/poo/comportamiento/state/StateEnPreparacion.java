@@ -14,7 +14,6 @@ public class StateEnPreparacion implements StatePedido {
     @Override
     public void aceptar(PedidoBase pedido) {
         System.out.println("El pedido ha sido aceptado y se encuentra en preparacion");
-        pedido.aceptar();
     }
 
     @Override
@@ -38,7 +37,7 @@ public class StateEnPreparacion implements StatePedido {
     @Override
     public void cancelar(PedidoBase pedido) {
         System.out.println("El pedido ha sido cancelado");
-        pedido.cancelar();
+        pedido.setState(new StateCancelado());
 
     }
 
