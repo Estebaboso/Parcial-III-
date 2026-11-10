@@ -16,9 +16,23 @@ public class MediatorControl implements MediatorPedido {
         this.asignacion = asignacion;
 
     }
+
     @Override
     public void notificarEvento(Object sender, String event, PedidoBase pedido) {
-
+        switch (event) {
+            case "PAGO_CONFIRMADO":
+                mediatorTienda.iniciarPreparacion(pedido);
+                mediatorDespacho.buscarRepartidor(pedido);
+                break;
+            case "PEDIDO_LISTO":
+                mediatorDespacho.despachar(pedido);
+                break;
+            case "PEDIDO_ENTREGADO":
+                System.out.println("Torre: liquidando a la tienda y al repartidor");
+                break;
+            default:
+                System.out.println("Torre: evento desconocido " + event);
+        }
     }
 
     public MediatorPagos getMediatorPagos() {
@@ -45,6 +59,10 @@ public class MediatorControl implements MediatorPedido {
         this.mediatorDespacho = mediatorDespacho;
     }
 
+    public void setMediatorPagos(MediatorPagos mediatorPagos) {
+        this.mediatorPagos = mediatorPagos;
+    }
+
     public Asignacion getAsignacion() {
         return asignacion;
     }
@@ -52,6 +70,4 @@ public class MediatorControl implements MediatorPedido {
     public void setAsignacion(Asignacion asignacion) {
         this.asignacion = asignacion;
     }
-
-
 }
