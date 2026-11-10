@@ -26,6 +26,7 @@ public class StateListoParaRecoger implements StatePedido {
     @Override
     public void despachar(PedidoBase pedido) {
         System.out.println("El pedido esta listo para recoger");
+        pedido.setState(new StateEnCamino());
     }
 
     @Override

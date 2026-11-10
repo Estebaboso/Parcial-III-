@@ -19,7 +19,7 @@ public class StateEnPreparacion implements StatePedido {
     @Override
     public void marcarListo(PedidoBase pedido) {
         System.out.println("El pedido se encuentra en preparacion");
-
+        pedido.setState(new StateListoParaRecoger());
     }
 
     @Override
