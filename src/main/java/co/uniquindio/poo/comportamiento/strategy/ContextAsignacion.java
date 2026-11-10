@@ -5,11 +5,11 @@ import co.uniquindio.poo.model.Repartidor;
 
 import java.util.List;
 
-public class Asignacion {
+public class ContextAsignacion {
     private StrategyAsignacion strategy;
     private List<Repartidor> repartidores;
 
-    public Asignacion(StrategyAsignacion strategy, List<Repartidor> repartidores) {
+    public ContextAsignacion(StrategyAsignacion strategy, List<Repartidor> repartidores) {
         this.strategy = strategy;
         this.repartidores = repartidores;
     }

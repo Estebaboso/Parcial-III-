@@ -105,12 +105,15 @@ public class PedidoBase implements Pedido, SubjectPedido {
     }
 
     // ---------- Memento ----------
-    public MementoPedido createMemento() {
 
-        return null;
+    public MementoPedido createMemento() {
+        return new MementoPedido(state, repartidor, costoEnvio);
     }
 
     public void restoreMemento(MementoPedido memento) {
+        setState(memento.getState());
+        this.repartidor = memento.getRepartidor();
+        this.costoEnvio = memento.getCostoEnvio();
     }
 
     public String getId() {

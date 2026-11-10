@@ -14,6 +14,8 @@ public class MementoPedido {
         this.costoEnvio = costoEnvio;
     }
 
+
+
     public StatePedido getState() { return state; }
     public Repartidor getRepartidor() { return repartidor; }
     public double getCostoEnvio() { return costoEnvio; }

@@ -1,7 +1,7 @@
 package co.uniquindio.poo.comportamiento.mediator;
 
 public abstract class MediatorBase {
-    private MediatorPedido mediator;
+    protected MediatorPedido mediator;
 
     public MediatorPedido getMediator() {
         return mediator;

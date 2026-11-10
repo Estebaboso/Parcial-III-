@@ -11,15 +11,23 @@ CaretakerPedido {
         this.mementos = new ArrayList<>();
     }
 
-    public List<MementoPedido> getMementos() { return mementos; }
-    public void setMementos(List<MementoPedido> mementos) { this.mementos = mementos; }
+    public List<MementoPedido> getMementos() {
+        return mementos;
+    }
+
+    public void setMementos(List<MementoPedido> mementos) {
+        this.mementos = mementos;
+    }
+// Esto sirve para el tema de que si un repartidor llega a rechazar un pedido, este vuelva a su estado original o se guarde
 
     public void guardar(MementoPedido memento) {
-        // TODO
+        mementos.add(memento);
     }
 
     public MementoPedido recuperarUltimo() {
-        // TODO
-        return null;
+        if (mementos.isEmpty()) {
+            return null;
+        }
+        return mementos.remove(mementos.size() - 1);
     }
 }

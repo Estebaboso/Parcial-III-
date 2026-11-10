@@ -1,16 +1,16 @@
 package co.uniquindio.poo.comportamiento.command;
 
 import co.uniquindio.poo.comportamiento.memento.MementoPedido;
-import co.uniquindio.poo.comportamiento.strategy.Asignacion;
+import co.uniquindio.poo.comportamiento.strategy.ContextAsignacion;
 import co.uniquindio.poo.estructural.decorator.PedidoBase;
 
 public class CommandAsignarRepartidor implements CommandPedido {
     private PedidoBase pedido;
     private String usuario;
-    private Asignacion context;
+    private ContextAsignacion context;
     private MementoPedido memento;
 
-    public CommandAsignarRepartidor(PedidoBase pedido, String usuario, Asignacion context) {
+    public CommandAsignarRepartidor(PedidoBase pedido, String usuario, ContextAsignacion context) {
         this.pedido = pedido;
         this.usuario = usuario;
         this.context = context;
@@ -49,11 +49,11 @@ public class CommandAsignarRepartidor implements CommandPedido {
         this.usuario = usuario;
     }
 
-    public Asignacion getContext() {
+    public ContextAsignacion getContext() {
         return context;
     }
 
-    public void setContext(Asignacion context) {
+    public void setContext(ContextAsignacion context) {
         this.context = context;
     }
 
