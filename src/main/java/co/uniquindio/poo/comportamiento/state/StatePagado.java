@@ -37,8 +37,8 @@ public class StatePagado implements StatePedido {
 
     @Override
     public void cancelar(PedidoBase pedido) {
-        System.out.println("El pedido se ha cancelado");
-        pedido.cancelar();
+        System.out.println("El pedido ha sido cancelado");
+        pedido.setState(new StateCancelado());
 
     }
 
