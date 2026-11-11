@@ -22,11 +22,12 @@ public class HandlerMonto extends HandlerValidador {
         double montoTotal = 0;
 
         for(Producto producto : pedido.getProductos()){
-            montoTotal += producto.getPrecio();
+            montoTotal += producto.obtenerPrecio();
         }
 
         if(montoTotal < MONTOMINIMO){
             System.out.println("EL pedido no alcanza el monto minimo.");
+            return false;
         }
         return true;
     }

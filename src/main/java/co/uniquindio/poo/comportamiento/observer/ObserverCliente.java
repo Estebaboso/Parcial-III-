@@ -11,7 +11,8 @@ public class ObserverCliente implements ObserverPedido {
 
     @Override
     public void actualizar(EventPedido evento) {
-
+        System.out.println("Cliente " + cliente.getNombre() + " Tu pedido " + evento.getPedidoId()
+                + ": " + evento.getEstadoAnterior() + " , " + evento.getEstadoNuevo());
     }
 
     public Cliente getCliente() {

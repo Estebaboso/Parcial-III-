@@ -56,20 +56,26 @@ public class PedidoBase implements Pedido, SubjectPedido {
     }
 
     // ---------- Observer (SubjectPedido) ----------
+
     @Override
     public void subscribir(ObserverPedido observer) {
-
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
 
     @Override
     public void desuscribrir(ObserverPedido observer) {
-
+        observers.remove(observer);
     }
 
     @Override
-    public void notificarObservadores(EventPedido event) {
-
+    public void notificarObservadores(EventPedido evento) {
+        for (ObserverPedido observer : new ArrayList<>(observers)) {
+            observer.actualizar(evento);
+        }
     }
+
 
     // ---------- State ----------
 
@@ -185,7 +191,11 @@ public class PedidoBase implements Pedido, SubjectPedido {
     }
 
     public void setState(StatePedido state) {
+        String anterior = (this.state == null) ? "INICIO" : this.state.getNombre();
         this.state = state;
+        if (!anterior.equals(state.getNombre())) {
+            notificarObservadores(new EventPedido(id, anterior, state.getNombre()));
+        }
     }
 
     public List<ObserverPedido> getObservers() {

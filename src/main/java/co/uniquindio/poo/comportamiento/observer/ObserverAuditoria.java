@@ -12,7 +12,8 @@ public class ObserverAuditoria implements ObserverPedido {
 
     @Override
     public void actualizar(EventPedido evento) {
-
+        registros.add(evento.getFechaHora() + " Pedido " + evento.getPedidoId() + ": "
+                + evento.getEstadoAnterior() + " , " + evento.getEstadoNuevo());
     }
 
     public List<String> getRegistros() {

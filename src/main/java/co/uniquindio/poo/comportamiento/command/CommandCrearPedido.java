@@ -1,6 +1,8 @@
 package co.uniquindio.poo.comportamiento.command;
 
+import co.uniquindio.poo.comportamiento.observer.EventPedido;
 import co.uniquindio.poo.estructural.decorator.PedidoBase;
+
 
 public class CommandCrearPedido implements CommandPedido {
     private PedidoBase pedido;
@@ -13,18 +15,22 @@ public class CommandCrearPedido implements CommandPedido {
 
     @Override
     public void ejecutar() {
-
+        System.out.println("[Command] " + usuario + " creó el pedido " + pedido.getId());
+        // Esto avisa a los observers que el pedido se creo
+        pedido.notificarObservadores(new EventPedido(pedido.getId(), "INICIO", pedido.getState().getNombre()));
     }
 
     @Override
     public void deshacer() {
+        // Va a state y aplica el  cancelar
+        pedido.cancelar();
     }
 
     @Override
     public String getDescripcion() {
-
-        return "";
+        return "Crear pedido " + pedido.getId();
     }
+
 
     public PedidoBase getPedido() {
         return pedido;

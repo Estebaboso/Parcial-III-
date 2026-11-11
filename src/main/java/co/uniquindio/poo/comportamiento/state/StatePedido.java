@@ -20,5 +20,7 @@ public interface StatePedido {
 
     void reembolsar(PedidoBase pedido);
 
+    String getNombre();
+
 
 }

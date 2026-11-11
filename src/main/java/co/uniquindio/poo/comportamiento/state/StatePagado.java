@@ -14,7 +14,7 @@ public class StatePagado implements StatePedido {
     @Override
     public void aceptar(PedidoBase pedido) {
          System.out.println("El pedido se ha aceptado");
-         pedido.aceptar();
+         pedido.setState(new StateEnPreparacion());
     }
 
     @Override
@@ -47,6 +47,11 @@ public class StatePagado implements StatePedido {
         System.out.println("El pedido ha sido reembolsado");
         pedido.reembolsar();
 
+    }
+
+    @Override
+    public String getNombre() {
+        return  "PAGADO";
     }
 
 

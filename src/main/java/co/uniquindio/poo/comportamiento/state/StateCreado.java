@@ -8,7 +8,7 @@ public class StateCreado implements StatePedido {
     @Override
     public void pagar(PedidoBase pedido) {
         System.out.println("El pedido se ha pagado correctamente");
-        pedido.pagar();
+        pedido.setState(new StatePagado());
 
     }
 
@@ -48,6 +48,11 @@ public class StateCreado implements StatePedido {
         System.out.println("El pedido ha sido reembolsado");
         pedido.reembolsar();
 
+    }
+
+    @Override
+    public String getNombre() {
+        return  "CREADO";
     }
 
 

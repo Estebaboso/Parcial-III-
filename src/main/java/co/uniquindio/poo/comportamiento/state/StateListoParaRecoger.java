@@ -20,19 +20,19 @@ public class StateListoParaRecoger implements StatePedido {
     @Override
     public void marcarListo(PedidoBase pedido) {
         System.out.println("El pedido esta listo para recoger");
-        pedido.marcarListo();
 
     }
 
     @Override
     public void despachar(PedidoBase pedido) {
         System.out.println("El pedido esta listo para recoger");
+        pedido.setState(new StateEnCamino());
     }
 
     @Override
     public void entregar(PedidoBase pedido) {
         System.out.println("El pedido esta listo para recoger");
-
+        pedido.setState(new StateEntregado());
     }
 
     @Override
@@ -48,5 +48,9 @@ public class StateListoParaRecoger implements StatePedido {
 
     }
 
+    @Override
+    public String getNombre() {
+        return  "LISTO PARA RECOGER";
+    }
 
 }

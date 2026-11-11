@@ -12,7 +12,8 @@ public class ObserverRepartidor implements ObserverPedido {
 
     @Override
     public void actualizar(EventPedido evento) {
-
+        System.out.println("Repartidor " + repartidor.getNombre() + " Pedido " + evento.getPedidoId()
+                + ": " + evento.getEstadoAnterior() + " , " + evento.getEstadoNuevo());
     }
 
     public Repartidor getRepartidor() {

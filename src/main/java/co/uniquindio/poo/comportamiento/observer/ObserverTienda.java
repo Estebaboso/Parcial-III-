@@ -12,7 +12,8 @@ public class ObserverTienda implements ObserverPedido {
 
     @Override
     public void actualizar(EventPedido evento) {
-
+        System.out.println("Tienda " + tienda.getNombre() + " Pedido " + evento.getPedidoId()
+                + " ahora está en " + evento.getEstadoNuevo());
     }
 
     public Tienda getTienda() {

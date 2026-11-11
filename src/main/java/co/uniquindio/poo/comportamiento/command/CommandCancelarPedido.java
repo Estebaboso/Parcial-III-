@@ -17,19 +17,23 @@ public class CommandCancelarPedido implements CommandPedido {
 
     @Override
     public void ejecutar() {
-
+        memento = pedido.createMemento();   // "foto" antes de cancelar
+        pedido.cancelar();
+        System.out.println("Command " + usuario + " canceló el pedido " + pedido.getId() + " (" + motivo + ")");
     }
 
     @Override
     public void deshacer() {
-
+        if (memento != null) {
+            pedido.restoreMemento(memento);
+        }
     }
 
     @Override
     public String getDescripcion() {
-
-        return "";
+        return "Cancelar pedido " + pedido.getId() + " (" + motivo + ")";
     }
+
 
     public PedidoBase getPedido() {
         return pedido;

@@ -3,6 +3,7 @@ package co.uniquindio.poo.comportamiento.command;
 import co.uniquindio.poo.comportamiento.memento.MementoPedido;
 import co.uniquindio.poo.comportamiento.strategy.ContextAsignacion;
 import co.uniquindio.poo.estructural.decorator.PedidoBase;
+import co.uniquindio.poo.model.Repartidor;
 
 public class CommandAsignarRepartidor implements CommandPedido {
     private PedidoBase pedido;
@@ -18,19 +19,34 @@ public class CommandAsignarRepartidor implements CommandPedido {
 
     @Override
     public void ejecutar() {
-
+        memento = pedido.createMemento();   // "foto" antes de asignar
+        Repartidor repartidor = context.asignar(pedido);   // aquí se pone a hacer vueltas el Strategy
+        if (repartidor == null) {
+            System.out.println("Command: No hay repartidores disponibles para el pedido " + pedido.getId());
+            return;
+        }
+        pedido.setRepartidor(repartidor);
+        System.out.println("Command: " + usuario + " asignó a " + repartidor.getNombre()
+                + " al pedido " + pedido.getId());
     }
 
     @Override
     public void deshacer() {
-
+        Repartidor asignado = pedido.getRepartidor();
+        if (memento != null) {
+            pedido.restoreMemento(memento);   // vuelve al repartidor anterior (o a ninguno)
+        }
+                          // Solo si ContextAsignacion.asignar() le sumó el pedido al repartidor:
+        if (asignado != null) {
+            asignado.setPedidosActivos(Math.max(0, asignado.getPedidosActivos() - 1));
+        }
     }
 
     @Override
     public String getDescripcion() {
-
-        return "";
+        return "Asignar repartidor al pedido " + pedido.getId();
     }
+
 
 
     public PedidoBase getPedido() {

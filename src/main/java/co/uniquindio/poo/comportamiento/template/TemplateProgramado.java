@@ -11,16 +11,25 @@ public class TemplateProgramado extends TemplateProcesador {
         this.horaProgramada = horaProgramada;
     }
 
-    public LocalDateTime getHoraProgramada() { return horaProgramada; }
-    public void setHoraProgramada(LocalDateTime horaProgramada) { this.horaProgramada = horaProgramada; }
+    public LocalDateTime getHoraProgramada() {
+        return horaProgramada;
+    }
+
+    public void setHoraProgramada(LocalDateTime horaProgramada) {
+        this.horaProgramada = horaProgramada;
+    }
 
     @Override
     protected void preparar(PedidoBase pedido) {
-        // TODO
+        System.out.println("Preparando el pedido programado" +pedido.getId());
+        pedido.aceptar();
+        pedido.marcarListo();
     }
 
     @Override
     protected void entregar(PedidoBase pedido) {
-        // TODO
+        System.out.println("Pedido programado para: " +horaProgramada);
+        pedido.despachar();
+        pedido.entregar();
     }
 }

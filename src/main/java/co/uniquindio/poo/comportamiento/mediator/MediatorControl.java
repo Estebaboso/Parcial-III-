@@ -9,11 +9,11 @@ public class MediatorControl implements MediatorPedido {
     private MediatorDespacho mediatorDespacho;
     private ContextAsignacion contextAsignacion;
 
-    public MediatorControl(MediatorPagos mediatorPagos, MediatorTienda mediatorTienda, MediatorDespacho mediatorDespacho, ContextAsignacion contextAsignacion) {
+    public MediatorControl(MediatorPagos mediatorPagos, MediatorTienda mediatorTienda, MediatorDespacho mediatorDespacho) {
         this.mediatorPagos = mediatorPagos;
         this.mediatorTienda = mediatorTienda;
         this.mediatorDespacho = mediatorDespacho;
-        this.contextAsignacion = contextAsignacion;
+
 
     }
 
@@ -59,11 +59,5 @@ public class MediatorControl implements MediatorPedido {
         this.mediatorDespacho = mediatorDespacho;
     }
 
-    public ContextAsignacion getAsignacion() {
-        return contextAsignacion;
-    }
 
-    public void setAsignacion(ContextAsignacion contextAsignacion) {
-        this.contextAsignacion = contextAsignacion;
-    }
 }
