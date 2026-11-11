@@ -135,7 +135,7 @@ public class Main {
 
         Pedido total = new PedidoPrioritario(
                 new PedidoPropina(new PedidoEmpaque(pedido1, 1500), 3000), 2000);
-        System.out.println(total.getDescripcion() + " -> $" + total.getCosto());
+        System.out.println(total.getDescripcion() + "," + total.getCosto());
 
 
         // Escenario 2

@@ -15,7 +15,7 @@ public class CommandCrearPedido implements CommandPedido {
 
     @Override
     public void ejecutar() {
-        System.out.println("[Command] " + usuario + " creó el pedido " + pedido.getId());
+        System.out.println("Command " + usuario + " creó el pedido " + pedido.getId());
         // Esto avisa a los observers que el pedido se creo
         pedido.notificarObservadores(new EventPedido(pedido.getId(), "INICIO", pedido.getState().getNombre()));
     }

@@ -13,8 +13,9 @@ public class MediatorControl implements MediatorPedido {
         this.mediatorPagos = mediatorPagos;
         this.mediatorTienda = mediatorTienda;
         this.mediatorDespacho = mediatorDespacho;
-
-
+        mediatorPagos.setMediator(this);
+        mediatorTienda.setMediator(this);
+        mediatorDespacho.setMediator(this);
     }
 
     @Override
@@ -32,7 +33,9 @@ public class MediatorControl implements MediatorPedido {
                 break;
             default:
                 System.out.println("Torre: evento desconocido " + event);
+
         }
+
     }
 
     public MediatorPagos getMediatorPagos() {
@@ -58,6 +61,8 @@ public class MediatorControl implements MediatorPedido {
     public void setMediatorDespacho(MediatorDespacho mediatorDespacho) {
         this.mediatorDespacho = mediatorDespacho;
     }
+
+
 
 
 }

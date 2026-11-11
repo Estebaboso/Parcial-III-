@@ -45,15 +45,18 @@ public class PedidoBase implements Pedido, SubjectPedido {
     // ---------- Decorator (Pedido) ----------
     @Override
     public double getCosto() {
-
-        return costoEnvio;
+        double total = costoEnvio;
+        for (Producto producto : productos) {
+            total += producto.obtenerPrecio();
+        }
+        return total;
     }
 
     @Override
     public String getDescripcion() {
-
-        return "";
+        return "Pedido " + id;
     }
+
 
     // ---------- Observer (SubjectPedido) ----------
 
