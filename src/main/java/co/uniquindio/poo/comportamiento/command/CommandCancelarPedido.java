@@ -1,29 +1,36 @@
 package co.uniquindio.poo.comportamiento.command;
 
+import co.uniquindio.poo.comportamiento.memento.CaretakerPedido;
 import co.uniquindio.poo.comportamiento.memento.MementoPedido;
 import co.uniquindio.poo.estructural.decorator.PedidoBase;
 
 public class CommandCancelarPedido implements CommandPedido {
+
     private PedidoBase pedido;
     private String usuario;
     private String motivo;
-    private MementoPedido memento;
+    private CaretakerPedido caretaker;
 
-    public CommandCancelarPedido(PedidoBase pedido, String usuario, String motivo) {
+    public CommandCancelarPedido(PedidoBase pedido, String usuario, String motivo, CaretakerPedido caretaker) {
         this.pedido = pedido;
         this.usuario = usuario;
         this.motivo = motivo;
+        this.caretaker = caretaker;
     }
 
     @Override
     public void ejecutar() {
-        memento = pedido.createMemento();   // "foto" antes de cancelar
+        caretaker.guardar(pedido.createMemento());
+
         pedido.cancelar();
+
         System.out.println("Command " + usuario + " canceló el pedido " + pedido.getId() + " (" + motivo + ")");
     }
 
     @Override
     public void deshacer() {
+        MementoPedido memento = caretaker.recuperarUltimo();
+
         if (memento != null) {
             pedido.restoreMemento(memento);
         }
@@ -33,6 +40,7 @@ public class CommandCancelarPedido implements CommandPedido {
     public String getDescripcion() {
         return "Cancelar pedido " + pedido.getId() + " (" + motivo + ")";
     }
+
 
 
     public PedidoBase getPedido() {
@@ -59,12 +67,6 @@ public class CommandCancelarPedido implements CommandPedido {
         this.motivo = motivo;
     }
 
-    public MementoPedido getMemento() {
-        return memento;
-    }
 
-    public void setMemento(MementoPedido memento) {
-        this.memento = memento;
-    }
 
 }

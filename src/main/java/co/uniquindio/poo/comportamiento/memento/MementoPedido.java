@@ -15,7 +15,6 @@ public class MementoPedido {
     }
 
 
-
     public StatePedido getState() { return state; }
     public Repartidor getRepartidor() { return repartidor; }
     public double getCostoEnvio() { return costoEnvio; }

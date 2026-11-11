@@ -39,8 +39,6 @@ public class PedidoFacade {
 
         System.out.println("El pedido pasó todas las validaciones.");
 
-        // "foto" inicial del pedido
-        caretaker.guardar(pedido.createMemento());
 
         // La tienda crea el pedido y queda en el historial
         historial.ejecutar(new CommandCrearPedido(pedido, usuario), usuario);
@@ -52,8 +50,9 @@ public class PedidoFacade {
     }
 
     public void cancelarPedido(PedidoBase pedido, String usuario, String motivo) {
-        // Command guarda su propio memento antes de cancelar
-        historial.ejecutar(new CommandCancelarPedido(pedido, usuario, motivo), usuario);
+        historial.ejecutar(
+                new CommandCancelarPedido(pedido, usuario, motivo, caretaker),
+                usuario);
     }
 
     public void deshacerUltimo() {
